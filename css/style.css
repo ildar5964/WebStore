@@ -20,29 +20,29 @@
 
 .products {
     display: flex;
+    width: 1350px
+;
 }
 
-.by-btn {
+.buy-btn {
     color: #fff; /* цвет текста */
     background: rgb(212,75,56); /* фон кнопки */
-    padding: .7em 1.5em; /* отступ от текста */
+    padding: 0.7em 1.5em; /* отступ от текста */
     margin-bottom: 1.5em;
+
    
 }
 
-.by-btn:hover { 
+.buy-btn:hover {
     background: rgb(232,95,76); 
 } /* при наведении курсора мышки */
 
-.by-btn:active {
+.buy-btn:active {
      background: rgb(152,15,0);
  } /* при нажатии */
 
  .image {
-
-    padding-left: 15px;
-    padding-right: 15px;
-
+    padding: 15px;
  }
 
 .btn-cart {
@@ -50,7 +50,6 @@
     background: rgb(212,75,56); /* фон кнопки */
     padding: .7em 1.5em; /* отступ от текста */
     margin: 1.5em;
-
 }
 
 .btn-cart:hover {

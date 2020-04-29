@@ -1,28 +1,58 @@
-const products = [
-  {id: 1, title: 'Notebook', price: 20000},
-  {id: 2, title: 'Mouse', price: 1500},
-  {id: 3, title: 'Keyboard', price: 5000},
-  {id: 4, title: 'Gamepad', price: 4500},
-  {id: 4, title: 'Monitor'},
-];
 
-class ProductsRender {
-
-  static renderProducts(products){
-    return products.map((product) => {
-      return `<div class="product-item">
-            <h3>${product.title}</h3>
-            <img class="image" src="http://placehold.it/250"/>
-            <p> Цена: ${product.price  || 'уточняется'} </p>
-            <button class="by-btn">Добавить в корзину</button>
-          </div>`
-    }).join('') /// ЗАПЯТЫЕ УБРАЛ ИСПОЛЬЗУЯ МЕТОД jOIN()
+class ProductList {
+  constructor(container = '.products') {
+    this.container = container;
+    this.goods = [];
+    this.allProducts = [];
+    this._fetchProducts();
+    this._render();
   }
 
-  static viewProducts(selector, html){
-    document.querySelector(selector).innerHTML = html
+  _fetchProducts() {
+    this.goods = [
+      {id: 1, title: 'Notebook', price: 20000},
+      {id: 2, title: 'Mouse', price: 1500},
+      {id: 3, title: 'Keyboard', price: 5000},
+      {id: 4, title: 'Gamepad', price: 4200},
+    ]
+  }
+
+  //​ метод, определяющий суммарную стоимость всех товаров.
+  calcTotalSum() {
+    return this.goods.reduce((sum, item) => {
+      return sum += item.price
+    }, 0)
+  }
+
+  _render() {
+    const block = document.querySelector(this.container);
+
+    for (let product of this.goods) {
+      const productObject = new ProductItem(product);
+      this.allProducts.push(productObject);
+      block.insertAdjacentHTML('beforeend', productObject.render());
+    }
   }
 }
 
-const html = ProductsRender.renderProducts(products)
-ProductsRender.viewProducts('.products', html)
+class ProductItem {
+  constructor(product, img = 'https://placehold.it/200') {
+    this.title = product.title;
+    this.price = product.price;
+    this.id = product.id;
+    this.img = img;
+  }
+
+  render() {
+    return `<div class="product-item" data-id="${this.id}">
+                <img class="image" src="${this.img}" alt="Some img">
+                <div class="desc">
+                    <h3>${this.title}</h3>
+                    <p>${this.price} \u20bd</p>
+                    <button class="buy-btn">Купить</button>
+                </div>
+            </div>`;
+  }
+}
+new ProductList();
+
