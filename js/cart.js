@@ -1,9 +1,9 @@
-class Cart{ // создаём корзину товаров
+class Cart { // создаём корзину товаров
     constructor() {
         this.cartItems = [] // в корзине пустой массив
     }
 
-    addToCart(item){ // метод для добавлени ятовара в корзину
+    addToCart(item){ // метод для добавления товара в корзину
         const el = this.cartItems.find(it => it.id === item.id)
         if(el){
             el.quantity++ // увеличиваем количество
@@ -27,6 +27,16 @@ class Cart{ // создаём корзину товаров
     }
 
     render(){
+        return `<div class="product-item" data-id="${this.id}">
+                 <img class="image" src="${this.img}" alt="Some img">
+                <div class="desc">
+                     <h3>${this.title}</h3>
+                    <p>${this.price} \u20bd</p>
+                     <p>${this.quantity} \u20bd</p>
+                   <p>Сумма ....</p>
+                    <button class="buy-btn">Удалить из корзины</button>
+                </div>
+            </div>`;
 
     }
 }
@@ -43,3 +53,8 @@ class CartItem { // Создаём класс для элемента корзи
         return this.price * this.quantity
     }
 }
+
+let cart = new Cart()
+
+window.addEventListener('load', () => {
+ document.getElementById('allCart').addEventListener('click', () => cart.render());

@@ -65,3 +65,12 @@
     margin-bottom: 15px;
     text-align: right;
 }
+
+.cart-Box {
+    position: absolute;
+    margin-top: 0px;
+    margin-left: 0px;
+    height: 800px;
+    width: 800px;
+    background-color: chartreuse;
+}
