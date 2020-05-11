@@ -1,5 +1,1 @@
-
-.idea
-*.md
-*.iml
-
+node_modules/
